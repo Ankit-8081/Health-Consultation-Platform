@@ -1,0 +1,22 @@
+# Build output
+target/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+nbproject/
+
+# Local secrets: never commit real database passwords
+src/main/resources/db.properties
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

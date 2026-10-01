@@ -1,0 +1,27 @@
+/* Design tokens from docs/UI_Handoff_Spec.md. Use these variables, not raw values. */
+:root {
+  --color-primary: #1F6FB2;
+  --color-primary-dark: #164F80;
+  --color-success: #2E7D32;
+  --color-warning: #B26A00;
+  --color-danger: #C62828;
+  --color-bg: #F5F7FA;
+  --color-surface: #FFFFFF;
+  --color-text: #1B1F24;
+  --color-muted: #5B6573;
+  --color-border: #D5DBE3;
+
+  --font-body: system-ui, "Segoe UI", Arial, sans-serif;
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+
+  --radius: 6px;
+  --sidebar-w: 220px;
+  --layout-max: 1100px;
+}
+
+html { font-size: 16px; line-height: 1.5; }
+body { margin: 0; }
