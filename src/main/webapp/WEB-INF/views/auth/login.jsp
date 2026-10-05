@@ -6,15 +6,17 @@
 </jsp:include>
 
 <main id="main-content" class="auth-container">
-    <h1>Login to Your Account</h1>
+    <h1>Login to your account</h1>
 
-    <form action="${pageContext.request.contextPath}/login" method="POST" novalidate>
+    <jsp:include page="/WEB-INF/include/flash.jsp" />
+
+    <form action="${pageContext.request.contextPath}/login" method="post">
         <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" 
-                   value="<c:out value='${form.email}' />" 
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" maxlength="120" required autocomplete="email"
+                   value="<c:out value='${form.email}' />"
                    class="${not empty errors.email ? 'input-error' : ''}"
-                   <c:if test="${not empty errors.email}">aria-invalid="true" aria-describedby="email-error"</c:if> required>
+                   <c:if test="${not empty errors.email}">aria-invalid="true" aria-describedby="email-error"</c:if>>
             <c:if test="${not empty errors.email}">
                 <span id="email-error" class="field-error" role="alert"><c:out value="${errors.email}" /></span>
             </c:if>
@@ -22,15 +24,18 @@
 
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" 
-                   class="${not empty errors.password ? 'input-error' : ''}"
-                   <c:if test="${not empty errors.password}">aria-invalid="true" aria-describedby="password-error"</c:if> required>
+            <div class="password-wrap">
+                <input type="password" id="password" name="password" maxlength="64" required autocomplete="current-password"
+                       class="${not empty errors.password ? 'input-error' : ''}"
+                       <c:if test="${not empty errors.password}">aria-invalid="true" aria-describedby="password-error"</c:if>>
+                <button type="button" class="toggle-password" data-target="password" aria-label="Show password">Show</button>
+            </div>
             <c:if test="${not empty errors.password}">
                 <span id="password-error" class="field-error" role="alert"><c:out value="${errors.password}" /></span>
             </c:if>
         </div>
 
-        <button type="submit" class="btn-primary">Sign In</button>
+        <button type="submit" class="btn-primary">Sign in</button>
     </form>
 
     <p class="auth-footer">
