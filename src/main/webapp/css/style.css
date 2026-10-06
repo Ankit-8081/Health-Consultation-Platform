@@ -1,0 +1,196 @@
+/* Component styles. Every colour, font and spacing value comes from tokens.css (do not use raw hex here). */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    font-family: var(--font-body);
+    background: var(--color-bg);
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1 { font-size: 24px; font-weight: 600; margin: 0 0 var(--spacing-md); }
+h2 { font-size: 18px; font-weight: 600; margin: 0 0 var(--spacing-sm); }
+a { color: var(--color-primary); }
+a:hover { color: var(--color-primary-dark); }
+
+:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+
+/* ---------- skip link ---------- */
+.skip-link {
+    position: absolute;
+    top: -48px;
+    left: 0;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--color-primary);
+    color: var(--color-surface);
+    z-index: 100;
+}
+.skip-link:focus { top: 0; }
+
+/* ---------- header ---------- */
+.navbar {
+    background: var(--color-primary-dark);
+    color: var(--color-surface);
+    padding: var(--spacing-md) var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+.navbar .brand { color: var(--color-surface); font-size: 20px; font-weight: 600; text-decoration: none; }
+.navbar a { color: var(--color-surface); }
+.user-info { display: flex; align-items: center; gap: var(--spacing-md); flex-wrap: wrap; }
+.user-name { font-weight: 600; }
+.role-badge {
+    border: 1px solid var(--color-surface);
+    border-radius: var(--radius);
+    padding: 0 var(--spacing-sm);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+}
+.inline-form { display: inline; margin: 0; }
+.btn-link {
+    background: none;
+    border: none;
+    color: var(--color-surface);
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* ---------- page frame ---------- */
+.main-container { display: flex; flex: 1; }
+
+.sidebar {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    background: var(--color-text);
+    padding: var(--spacing-lg) var(--spacing-md);
+}
+.sidebar ul { list-style: none; margin: 0; padding: 0; }
+.sidebar li { margin-bottom: var(--spacing-sm); }
+.sidebar a {
+    display: block;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius);
+    color: var(--color-border);
+    text-decoration: none;
+}
+.sidebar a:hover { color: var(--color-surface); }
+.sidebar a.active { background: var(--color-primary); color: var(--color-surface); }
+
+.content { flex: 1; padding: var(--spacing-lg); max-width: var(--layout-max); }
+
+.card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--spacing-lg);
+}
+
+/* ---------- messages ---------- */
+.alert {
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    border: 1px solid;
+    border-radius: var(--radius);
+}
+.alert-success {
+    color: var(--color-success);
+    border-color: var(--color-success);
+    background: color-mix(in srgb, var(--color-success) 10%, var(--color-surface));
+}
+.alert-error {
+    color: var(--color-danger);
+    border-color: var(--color-danger);
+    background: color-mix(in srgb, var(--color-danger) 8%, var(--color-surface));
+}
+
+/* ---------- forms ---------- */
+.auth-container {
+    width: 100%;
+    max-width: 440px;
+    margin: var(--spacing-lg) auto;
+    padding: var(--spacing-lg);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    align-self: flex-start;
+}
+
+.form-group { margin-bottom: var(--spacing-md); }
+.form-group label { display: block; margin-bottom: var(--spacing-xs); font-weight: 600; }
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: var(--spacing-sm) 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    font: inherit;
+    color: var(--color-text);
+    background: var(--color-surface);
+}
+.form-group input:focus { border-color: var(--color-primary); }
+.form-group .input-error { border-color: var(--color-danger); }
+.field-error { display: block; margin-top: var(--spacing-xs); color: var(--color-danger); font-size: 14px; }
+.hint { display: block; margin-top: var(--spacing-xs); color: var(--color-muted); font-size: 14px; }
+
+.password-wrap { position: relative; }
+.password-wrap input { padding-right: 64px; }
+.toggle-password {
+    position: absolute;
+    right: var(--spacing-xs);
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+.btn-primary {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--color-primary);
+    color: var(--color-surface);
+    border: none;
+    border-radius: var(--radius);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 120ms ease;
+}
+.btn-primary:hover { background: var(--color-primary-dark); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.auth-footer { margin: var(--spacing-md) 0 0; text-align: center; color: var(--color-muted); }
+
+/* ---------- footer ---------- */
+.footer {
+    background: var(--color-primary-dark);
+    color: var(--color-surface);
+    text-align: center;
+    padding: var(--spacing-md);
+}
+.footer p { margin: 0; }
+
+/* ---------- phone and tablet ---------- */
+@media (max-width: 768px) {
+    .main-container { flex-direction: column; }
+    .sidebar { width: 100%; padding: var(--spacing-sm) var(--spacing-md); }
+    .sidebar ul { display: flex; flex-wrap: wrap; gap: var(--spacing-sm); }
+    .sidebar li { margin-bottom: 0; }
+    .content { padding: var(--spacing-md); }
+    .auth-container { margin: var(--spacing-md); width: auto; max-width: none; }
+    .navbar { padding: var(--spacing-sm) var(--spacing-md); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+}

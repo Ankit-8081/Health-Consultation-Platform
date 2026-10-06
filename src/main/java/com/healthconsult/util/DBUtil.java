@@ -32,6 +32,16 @@ public final class DBUtil {
     private static final Logger LOG = Logger.getLogger(DBUtil.class.getName());
     private static final Properties PROPS = loadProperties();
 
+    // Inside Tomcat the driver jar is in WEB-INF/lib, where DriverManager does not find it on its own
+    // ("No suitable driver found"). Loading the class by name registers it.
+    static {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            LOG.log(Level.SEVERE, "MySQL driver not found. Check that mysql-connector-j is in WEB-INF/lib.", e);
+        }
+    }
+
     private DBUtil() {
     }
 
