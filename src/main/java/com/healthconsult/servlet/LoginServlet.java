@@ -8,9 +8,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * STUB so the app starts and shows a page. Feature F1 (Business Logic + Frontend) replaces this:
- * doPost must validate input, call AuthService, create a NEW session, store SessionKeys.USER_ID,
- * USER_NAME and ROLE, then redirect to Role.getDashboardPath().
+ * Shows the login page. The JSP lives under WEB-INF, so it can only be reached through this servlet.
+ *
+ * <p>TODO F1 (Business Logic): add doPost. Validate input, call AuthService, create a NEW session,
+ * store SessionKeys.USER_ID, USER_NAME and ROLE, then redirect to Role.getDashboardPath().
+ * On error forward back here with request attributes "errors" (Map field to message, "general" for
+ * a message above the form) and "form" (Map of entered values, never the password).
  */
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
