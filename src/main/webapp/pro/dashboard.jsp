@@ -1,97 +1,252 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Portal | HealthConsult</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Doctor Dashboard - HealthConsult Pro</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root { --primary: #007670; --bg-body: #f8fafc; --sidebar-bg: #0f172a; --card-bg: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --border: #e2e8f0; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Plus Jakarta Sans", sans-serif; }
-        body { display: flex; min-height: 100vh; background-color: var(--bg-body); color: var(--text-main); }
-        .sidebar { width: 260px; background-color: var(--sidebar-bg); color: #fff; padding: 1.5rem 1rem; display: flex; flex-direction: column; justify-content: space-between; }
-        .brand { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0.75rem; margin-bottom: 2rem; color: #2dd4bf; font-size: 1.25rem; font-weight: 800; }
-        .nav-menu { list-style: none; }
-        .nav-item { margin-bottom: 0.35rem; }
-        .nav-link { display: flex; align-items: center; gap: 0.85rem; padding: 0.75rem 1rem; color: #94a3b8; text-decoration: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; }
-        .nav-link.active { background-color: var(--primary); color: #fff; }
-        .main-wrapper { flex: 1; display: flex; flex-direction: column; overflow-x: hidden; }
-        header { background: var(--card-bg); border-bottom: 1px solid var(--border); padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .content { padding: 2rem; max-width: 1400px; margin: 0 auto; width: 100%; }
-
-        .hero-banner { position: relative; border-radius: 16px; overflow: hidden; height: 280px; margin-bottom: 2rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
-        .hero-bg { width: 100%; height: 100%; object-fit: cover; }
-        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.4) 70%, rgba(15,23,42,0) 100%); display: flex; flex-direction: column; justify-content: center; padding: 0 3rem; color: #fff; }
-        .hero-overlay h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
-        .hero-overlay p { font-size: 1rem; color: #e2e8f0; max-width: 500px; }
-
-        .grid-2col { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; }
-        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
-        .doctor-banner-card { display: flex; gap: 1.25rem; align-items: center; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; }
-        .doctor-banner-card img { width: 120px; height: 120px; border-radius: 10px; object-fit: cover; }
+        :root {
+            --primary-color: #00a3e0;
+            --primary-dark: #0082b4;
+            --bg-light: #f4f8fa;
+            --card-shadow: 0 4px 20px rgba(0, 163, 224, 0.08);
+        }
+        body {
+            background-color: var(--bg-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .navbar-brand {
+            color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+        .sidebar {
+            background-color: #ffffff;
+            min-height: calc(100vh - 70px);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.03);
+        }
+        .sidebar .nav-link {
+            color: #495057;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+        }
+        .sidebar .nav-link i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        .stat-card {
+            background: #ffffff;
+            border: none;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s;
+        }
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background-color: rgba(0, 163, 224, 0.1);
+            color: var(--primary-color);
+        }
+        .card-custom {
+            background: #ffffff;
+            border: none;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+        }
+        .btn-primary-custom {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+            border-radius: 8px;
+            padding: 8px 20px;
+            font-weight: 600;
+        }
+        .btn-primary-custom:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            color: #fff;
+        }
+        .avatar-img {
+            width: 45px;
+            height: 45px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #e2e8f0;
+        }
+        .banner-card {
+            background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 100%);
+            border: none;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+        }
     </style>
 </head>
 <body>
-    <aside class="sidebar">
-        <div>
-            <div class="brand"><i class="fa-solid fa-user-doctor"></i><span>Doctor Portal</span></div>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#" class="nav-link active"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-calendar-days"></i> Appointments</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-user-injured"></i> Patients</a></li>
-            </ul>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top py-3">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand fs-4" href="#"><i class="fa-solid fa-notes-medical me-2"></i>HealthConsult Pro</a>
+            <div class="d-flex align-items-center">
+                <img src="https://images.unsplash.com/photo-1594824813576-96f00125c179?auto=format&fit=crop&q=80&w=200" alt="Dr. Aditi Sharma" class="avatar-img me-2">
+                <div class="me-3 text-start">
+                    <span class="d-block fw-bold text-dark" style="font-size: 0.95rem;">Dr. Aditi Sharma</span>
+                    <span class="d-block text-muted" style="font-size: 0.8rem;">Senior Consultant</span>
+                </div>
+                <a href="${pageContext.request.contextPath}/logout" class="btn btn-outline-danger btn-sm rounded-pill px-3 ms-2">Logout</a>
+            </div>
         </div>
-    </aside>
+    </nav>
 
-    <div class="main-wrapper">
-        <header>
-            <div>
-                <h1 style="font-size: 1.4rem; font-weight:800;">Clinical Dashboard</h1>
-                <p style="font-size:0.875rem; color:var(--text-muted);">Welcome back, Dr. Sarah Jenkins</p>
-            </div>
-        </header>
-
-        <main class="content">
-            <div class="hero-banner">
-                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&auto=format&fit=crop&q=80" class="hero-bg" alt="Clinical Practice">
-                <div class="hero-overlay">
-                    <h2>Delivering Quality Care Anywhere</h2>
-                    <p>Manage patient visits, conduct online consultations, and review diagnostic charts seamlessly.</p>
-                </div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-md-3 col-lg-2 sidebar p-3 d-none d-md-block">
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link active" href="#"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/pro/schedule.jsp"><i class="fa-solid fa-calendar-days"></i> Manage Schedule</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-user-injured"></i> My Patients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-file-prescription"></i> Prescriptions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                </ul>
             </div>
 
-            <div class="grid-2col">
-                <div class="card">
-                    <h3 style="font-size: 1.1rem; font-weight:700; margin-bottom: 1rem;">Scheduled Consultations</h3>
-                    
-                    <div class="doctor-banner-card">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80" alt="Patient Jannat">
-                        <div>
-                            <h4 style="font-size: 1rem; font-weight:700;">Jannat</h4>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.25rem 0;">Routine Cardiology Checkup & ECG Assessment</p>
-                            <span style="background:#dcfce7; color:#15803d; padding:0.2rem 0.6rem; border-radius:6px; font-weight:700; font-size:0.75rem;">10:00 AM Today</span>
+            <!-- Main Content Area -->
+            <div class="col-md-9 col-lg-10 ms-sm-auto px-4 py-4">
+                
+                <!-- Welcome Banner with Realistic Medical Team Vibe -->
+                <div class="card banner-card p-4 mb-4">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8">
+                            <h2 class="fw-bold text-dark mb-2">Welcome back, Dr. Sharma!</h2>
+                            <p class="text-muted mb-3">You have <strong>8 consultations</strong> scheduled for today. Your next appointment starts in 15 minutes.</p>
+                            <a href="${pageContext.request.contextPath}/pro/schedule.jsp" class="btn btn-primary-custom">
+                                <i class="fa-solid fa-calendar-plus me-1"></i> Manage Availability
+                            </a>
                         </div>
-                    </div>
-
-                    <div class="doctor-banner-card">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80" alt="Patient Rahul">
-                        <div>
-                            <h4 style="font-size: 1rem; font-weight:700;">Rahul Sharma</h4>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.25rem 0;">Follow-up Consultation on Blood Pressure</p>
-                            <span style="background:#dcfce7; color:#15803d; padding:0.2rem 0.6rem; border-radius:6px; font-weight:700; font-size:0.75rem;">11:15 AM Today</span>
+                        <div class="col-lg-4 text-center d-none d-lg-block">
+                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=400" alt="Medical Team" class="img-fluid rounded-4" style="max-height: 140px; object-fit: cover;">
                         </div>
                     </div>
                 </div>
 
-                <div class="card">
-                    <h3 style="font-size: 1.1rem; font-weight:700; margin-bottom: 1rem;">Clinical Notes</h3>
-                    <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=500&auto=format&fit=crop&q=80" style="width:100%; height:180px; object-fit:cover; border-radius:8px; margin-bottom:1rem;" alt="Doctor Workstation">
-                    <p style="font-size:0.875rem; color:var(--text-muted);">Ensure all digital prescriptions are signed and uploaded prior to concluding video sessions.</p>
+                <!-- Statistics Stat Cards Row -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-4">
+                        <div class="card stat-card p-3">
+                            <div class="d-flex align-items-center">
+                                <div class="stat-icon me-3"><i class="fa-solid fa-calendar-check"></i></div>
+                                <div>
+                                    <h6 class="text-muted mb-1">Today's Appointments</h6>
+                                    <h3 class="fw-bold mb-0">8</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card stat-card p-3">
+                            <div class="d-flex align-items-center">
+                                <div class="stat-icon me-3" style="background-color: rgba(40, 167, 69, 0.1); color: #28a745;"><i class="fa-solid fa-video"></i></div>
+                                <div>
+                                    <h6 class="text-muted mb-1">Upcoming Consultations</h6>
+                                    <h3 class="fw-bold mb-0">5</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card stat-card p-3">
+                            <div class="d-flex align-items-center">
+                                <div class="stat-icon me-3" style="background-color: rgba(255, 193, 7, 0.1); color: #ffc107;"><i class="fa-solid fa-user-clock"></i></div>
+                                <div>
+                                    <h6 class="text-muted mb-1">New Patient Requests</h6>
+                                    <h3 class="fw-bold mb-0">3</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Today's Patient Queue Table Section -->
+                <div class="card card-custom p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="fw-bold mb-0"><i class="fa-solid fa-list-ul me-2 text-primary"></i>Today's Appointment Queue</h5>
+                        <span class="badge bg-primary rounded-pill px-3 py-2">Live Feed</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Time Slot</th>
+                                    <th>Patient Name</th>
+                                    <th>Patient Photo</th>
+                                    <th>Reason / Symptoms</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="fw-semibold">10:00 AM - 10:30 AM</td>
+                                    <td>Rahul Singh</td>
+                                    <td><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" alt="Patient" class="rounded-circle" style="width: 35px; height: 35px; object-fit: cover;"></td>
+                                    <td>Post-op follow-up & vitals check</td>
+                                    <td><span class="badge bg-success bg-opacity-15 text-success px-3 py-2">Confirmed</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary px-3 rounded-pill fw-semibold">Start Call</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-semibold">11:00 AM - 11:30 AM</td>
+                                    <td>Priya Patel</td>
+                                    <td><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150" alt="Patient" class="rounded-circle" style="width: 35px; height: 35px; object-fit: cover;"></td>
+                                    <td>Initial Consultation for chronic migraine</td>
+                                    <td><span class="badge bg-warning bg-opacity-15 text-warning px-3 py-2">Pending</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-secondary px-3 rounded-pill fw-semibold">Review Details</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-semibold">02:00 PM - 02:30 PM</td>
+                                    <td>Amit Kumar</td>
+                                    <td><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150" alt="Patient" class="rounded-circle" style="width: 35px; height: 35px; object-fit: cover;"></td>
+                                    <td>Routine check-up & lab review</td>
+                                    <td><span class="badge bg-success bg-opacity-15 text-success px-3 py-2">Confirmed</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary px-3 rounded-pill fw-semibold">Join Room</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
-        </main>
+        </div>
     </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

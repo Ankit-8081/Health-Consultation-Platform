@@ -1,98 +1,280 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Portal | HealthConsult</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Patient Portal - HealthConsult Pro</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root { --primary: #007670; --bg-body: #f8fafc; --sidebar-bg: #0f172a; --card-bg: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --border: #e2e8f0; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Plus Jakarta Sans", sans-serif; }
-        body { display: flex; min-height: 100vh; background-color: var(--bg-body); color: var(--text-main); }
-        .sidebar { width: 260px; background-color: var(--sidebar-bg); color: #fff; padding: 1.5rem 1rem; display: flex; flex-direction: column; justify-content: space-between; }
-        .brand { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0.75rem; margin-bottom: 2rem; color: #2dd4bf; font-size: 1.25rem; font-weight: 800; }
-        .nav-menu { list-style: none; }
-        .nav-item { margin-bottom: 0.35rem; }
-        .nav-link { display: flex; align-items: center; gap: 0.85rem; padding: 0.75rem 1rem; color: #94a3b8; text-decoration: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; }
-        .nav-link.active { background-color: var(--primary); color: #fff; }
-        .main-wrapper { flex: 1; display: flex; flex-direction: column; overflow-x: hidden; }
-        header { background: var(--card-bg); border-bottom: 1px solid var(--border); padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .content { padding: 2rem; max-width: 1400px; margin: 0 auto; width: 100%; }
-        
-        /* Realistic Full Hero Banner */
-        .hero-banner { position: relative; border-radius: 16px; overflow: hidden; height: 320px; margin-bottom: 2.5rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
-        .hero-bg { width: 100%; height: 100%; object-fit: cover; }
-        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.3) 70%, rgba(15,23,42,0) 100%); display: flex; flex-direction: column; justify-content: center; padding: 0 3rem; color: #fff; }
-        .hero-overlay h2 { font-size: 2.25rem; font-weight: 800; line-height: 1.2; margin-bottom: 0.75rem; max-width: 600px; }
-        .hero-overlay p { font-size: 1.05rem; color: #e2e8f0; max-width: 520px; margin-bottom: 1.5rem; line-height: 1.5; }
-        .btn-banner { background: #007670; color: #fff; padding: 0.85rem 1.75rem; border-radius: 8px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; width: fit-content; transition: background 0.2s; }
-        .btn-banner:hover { background: #005a55; }
-
-        /* Vision Split Grid */
-        .section-title { font-size: 1.35rem; font-weight: 800; margin-bottom: 1.25rem; color: #0f172a; }
-        .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
-        .vision-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
-        .vision-img { width: 100%; height: 220px; object-fit: cover; }
-        .vision-body { padding: 1.5rem; }
-        .vision-body h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; color: #0f172a; }
-        .vision-body p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+        :root {
+            --primary-color: #00a3e0;
+            --primary-dark: #0082b4;
+            --bg-light: #f4f8fa;
+            --card-shadow: 0 4px 20px rgba(0, 163, 224, 0.08);
+        }
+        body {
+            background-color: var(--bg-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .navbar-brand {
+            color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+        .sidebar {
+            background-color: #ffffff;
+            min-height: calc(100vh - 70px);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.03);
+        }
+        .sidebar .nav-link {
+            color: #495057;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+        }
+        .sidebar .nav-link i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        .stat-card {
+            background: #ffffff;
+            border: none;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s;
+        }
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background-color: rgba(0, 163, 224, 0.1);
+            color: var(--primary-color);
+        }
+        .card-custom {
+            background: #ffffff;
+            border: none;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+        }
+        .btn-primary-custom {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+            border-radius: 8px;
+            padding: 8px 20px;
+            font-weight: 600;
+        }
+        .btn-primary-custom:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            color: #fff;
+        }
+        .avatar-img {
+            width: 45px;
+            height: 45px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #e2e8f0;
+        }
+        .banner-card {
+            background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 100%);
+            border: none;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+        }
     </style>
 </head>
 <body>
-    <aside class="sidebar">
-        <div>
-            <div class="brand"><i class="fa-solid fa-heart-pulse"></i><span>HealthConsult</span></div>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-user-doctor"></i> Find Doctors</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-calendar-check"></i> Consultations</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-file-medical"></i> Health Records</a></li>
-            </ul>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top py-3">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand fs-4" href="#"><i class="fa-solid fa-heart-pulse me-2"></i>HealthConsult Patient Portal</a>
+            <div class="d-flex align-items-center">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="Patient Avatar" class="avatar-img me-2">
+                <div class="me-3 text-start">
+                    <span class="d-block fw-bold text-dark" style="font-size: 0.95rem;">Rahul Singh</span>
+                    <span class="d-block text-muted" style="font-size: 0.8rem;">Patient ID: #HC-8492</span>
+                </div>
+                <a href="${pageContext.request.contextPath}/logout" class="btn btn-outline-danger btn-sm rounded-pill px-3 ms-2">Logout</a>
+            </div>
         </div>
-    </aside>
+    </nav>
 
-    <div class="main-wrapper">
-        <header>
-            <div>
-                <h1 style="font-size: 1.4rem; font-weight:800;">Patient Portal</h1>
-                <p style="font-size:0.875rem; color:var(--text-muted);">Empowering families to live healthier lives</p>
-            </div>
-        </header>
-
-        <main class="content">
-            <!-- Main Realistic Banner -->
-            <div class="hero-banner">
-                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1600&auto=format&fit=crop&q=80" class="hero-bg" alt="Wellness and Health">
-                <div class="hero-overlay">
-                    <h2>Empowering families to live healthier lives</h2>
-                    <p>Connect with top certified medical professionals, book consultations, and stay healthy at every stage of your journey.</p>
-                    <a href="#" class="btn-banner"><i class="fa-solid fa-calendar-plus"></i> Schedule Consultation</a>
-                </div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-md-3 col-lg-2 sidebar p-3 d-none d-md-block">
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link active" href="#"><i class="fa-solid fa-house-medical"></i> Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/patient/book.jsp"><i class="fa-solid fa-calendar-plus"></i> Book Consultation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-file-medical"></i> Medical Records</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-receipt"></i> Prescriptions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-user-gear"></i> Profile Settings</a></li>
+                </ul>
             </div>
 
-            <h2 class="section-title">Healthcare Partnering & Wellness</h2>
-
-            <!-- Dual Real Photography Cards -->
-            <div class="grid-2col">
-                <div class="vision-card">
-                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80" class="vision-img" alt="Medical Consultation">
-                    <div class="vision-body">
-                        <h3>In-Person & Online Consultation</h3>
-                        <p>Our goal is to be the healthcare partner for our members around the world, providing seamless access to specialists when you need them most.</p>
+            <!-- Main Content Area -->
+            <div class="col-md-9 col-lg-10 ms-sm-auto px-4 py-4">
+                
+                <!-- Welcome Banner -->
+                <div class="card banner-card p-4 mb-4">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8">
+                            <h2 class="fw-bold text-dark mb-2">Hello, Rahul! Take charge of your health today.</h2>
+                            <p class="text-muted mb-3">Consult India's top verified specialists online, check your prescriptions, and manage upcoming appointments seamlessly.</p>
+                            <a href="${pageContext.request.contextPath}/patient/book.jsp" class="btn btn-primary-custom">
+                                <i class="fa-solid fa-stethoscope me-1"></i> Book New Consultation
+                            </a>
+                        </div>
+                        <div class="col-lg-4 text-center d-none d-lg-block">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=400" alt="Healthcare consultation" class="img-fluid rounded-4" style="max-height: 140px; object-fit: cover;">
+                        </div>
                     </div>
                 </div>
 
-                <div class="vision-card">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=80" class="vision-img" alt="Doctor Client Discussion">
-                    <div class="vision-body">
-                        <h3>Personalized Medical Care</h3>
-                        <p>Work directly with doctors who tailor treatment plans around your family individual health requirements and lifestyle goals.</p>
+                <!-- Statistics Stat Cards Row -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-4">
+                        <div class="card stat-card p-3">
+                            <div class="d-flex align-items-center">
+                                <div class="stat-icon me-3"><i class="fa-solid fa-calendar-check"></i></div>
+                                <div>
+                                    <h6 class="text-muted mb-1">Upcoming Appointments</h6>
+                                    <h3 class="fw-bold mb-0">2</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card stat-card p-3">
+                            <div class="d-flex align-items-center">
+                                <div class="stat-icon me-3" style="background-color: rgba(40, 167, 69, 0.1); color: #28a745;"><i class="fa-solid fa-file-prescription"></i></div>
+                                <div>
+                                    <h6 class="text-muted mb-1">Active Prescriptions</h6>
+                                    <h3 class="fw-bold mb-0">4</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card stat-card p-3">
+                            <div class="d-flex align-items-center">
+                                <div class="stat-icon me-3" style="background-color: rgba(255, 193, 7, 0.1); color: #ffc107;"><i class="fa-solid fa-flask"></i></div>
+                                <div>
+                                    <h6 class="text-muted mb-1">Lab Reports Ready</h6>
+                                    <h3 class="fw-bold mb-0">1</h3>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Upcoming Appointments Table Section -->
+                <div class="card card-custom p-4 mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="fw-bold mb-0"><i class="fa-solid fa-calendar-days me-2 text-primary"></i>My Upcoming Appointments</h5>
+                        <a href="${pageContext.request.contextPath}/patient/book.jsp" class="text-decoration-name fw-semibold text-primary" style="font-size: 0.9rem;">View All Bookings</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Doctor</th>
+                                    <th>Specialty</th>
+                                    <th>Date & Time</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://images.unsplash.com/photo-1594824813576-96f00125c179?auto=format&fit=crop&q=80&w=150" alt="Doctor" class="rounded-circle me-2" style="width: 35px; height: 35px; object-fit: cover;">
+                                            <span class="fw-semibold">Dr. Aditi Sharma</span>
+                                        </div>
+                                    </td>
+                                    <td>General Physician</td>
+                                    <td>Oct 08, 2026 - 10:00 AM</td>
+                                    <td><span class="badge bg-success bg-opacity-15 text-success px-3 py-2">Confirmed</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary px-3 rounded-pill fw-semibold">Join Video Call</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=150" alt="Doctor" class="rounded-circle me-2" style="width: 35px; height: 35px; object-fit: cover;">
+                                            <span class="fw-semibold">Dr. Vikram Singh</span>
+                                        </div>
+                                    </td>
+                                    <td>Neurologist</td>
+                                    <td>Oct 12, 2026 - 02:30 PM</td>
+                                    <td><span class="badge bg-warning bg-opacity-15 text-warning px-3 py-2">Pending</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-secondary px-3 rounded-pill fw-semibold">Reschedule</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Featured Top Specialists Section (MFine Style) -->
+                <div class="card card-custom p-4">
+                    <h5 class="fw-bold mb-3"><i class="fa-solid fa-user-doctor me-2 text-primary"></i>Consult Top Specialists Online</h5>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded-3 bg-white text-center">
+                                <img src="https://images.unsplash.com/photo-1594824813576-96f00125c179?auto=format&fit=crop&q=80&w=200" alt="Specialist" class="rounded-circle mb-2" style="width: 70px; height: 70px; object-fit: cover;">
+                                <h6 class="fw-bold mb-1">Dr. Aditi Sharma</h6>
+                                <p class="text-muted small mb-2">General Medicine • 10 yrs exp</p>
+                                <a href="${pageContext.request.contextPath}/patient/book.jsp" class="btn btn-sm btn-outline-primary w-100 rounded-pill">Consult Now</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded-3 bg-white text-center">
+                                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=200" alt="Specialist" class="rounded-circle mb-2" style="width: 70px; height: 70px; object-fit: cover;">
+                                <h6 class="fw-bold mb-1">Dr. Vikram Singh</h6>
+                                <p class="text-muted small mb-2">Neurology • 12 yrs exp</p>
+                                <a href="${pageContext.request.contextPath}/patient/book.jsp" class="btn btn-sm btn-outline-primary w-100 rounded-pill">Consult Now</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded-3 bg-white text-center">
+                                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=200" alt="Specialist" class="rounded-circle mb-2" style="width: 70px; height: 70px; object-fit: cover;">
+                                <h6 class="fw-bold mb-1">Dr. Priya Nair</h6>
+                                <p class="text-muted small mb-2">Pediatrics • 8 yrs exp</p>
+                                <a href="${pageContext.request.contextPath}/patient/book.jsp" class="btn btn-sm btn-outline-primary w-100 rounded-pill">Consult Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </main>
+        </div>
     </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
