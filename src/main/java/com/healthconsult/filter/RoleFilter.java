@@ -1,5 +1,6 @@
 package com.healthconsult.filter;
 
+import com.healthconsult.util.SessionKeys;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,14 +18,21 @@ public class RoleFilter implements Filter {
 
         String path = req.getRequestURI().substring(req.getContextPath().length());
 
-        if (path.startsWith("/doctor/") && !isUserInRole(req, "DOCTOR")) {
-            res.sendError(403);
-            return;
-        }
-
-        if (path.startsWith("/patient/") && !isUserInRole(req, "PATIENT")) {
-            res.sendError(403);
-            return;
+        if (path.startsWith("/admin/")) {
+            if (!isUserInRole(req, "ADMIN")) {
+                res.sendError(HttpServletResponse.SC_FORBIDDEN);
+                return;
+            }
+        } else if (path.startsWith("/doctor/")) {
+            if (!isUserInRole(req, "DOCTOR")) {
+                res.sendError(HttpServletResponse.SC_FORBIDDEN);
+                return;
+            }
+        } else if (path.startsWith("/patient/")) {
+            if (!isUserInRole(req, "PATIENT")) {
+                res.sendError(HttpServletResponse.SC_FORBIDDEN);
+                return;
+            }
         }
 
         chain.doFilter(request, response);
@@ -33,8 +41,8 @@ public class RoleFilter implements Filter {
     private boolean isUserInRole(HttpServletRequest req, String role) {
         HttpSession session = req.getSession(false);
         if (session == null) return false;
-        Object user = session.getAttribute("user");
-        if (user == null) return false;
-        return user.toString().toUpperCase().contains(role);
+        Object userRole = session.getAttribute(SessionKeys.ROLE);
+        if (userRole == null) return false;
+        return userRole.toString().toUpperCase().contains(role);
     }
 }
