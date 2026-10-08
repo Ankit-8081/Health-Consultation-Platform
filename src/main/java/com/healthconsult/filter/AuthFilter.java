@@ -1,5 +1,6 @@
 package com.healthconsult.filter;
 
+import com.healthconsult.util.SessionKeys;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,7 +15,7 @@ public class AuthFilter implements Filter {
             throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-        
+
         String path = req.getRequestURI().substring(req.getContextPath().length());
 
         if (path.startsWith("/css/") || path.startsWith("/js/") || path.equals("/login") || path.equals("/register") || path.equals("/")) {
@@ -23,7 +24,7 @@ public class AuthFilter implements Filter {
         }
 
         HttpSession session = req.getSession(false);
-        boolean loggedIn = (session != null && session.getAttribute("user") != null);
+        boolean loggedIn = (session != null && session.getAttribute(SessionKeys.USER_ID) != null);
 
         if (!loggedIn) {
             res.sendRedirect(req.getContextPath() + "/login");
