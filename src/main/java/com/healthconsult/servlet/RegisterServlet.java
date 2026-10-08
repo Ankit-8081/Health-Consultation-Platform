@@ -10,6 +10,12 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.healthconsult.util.Validator;
+import com.healthconsult.exception.AppException;
+import com.healthconsult.exception.ValidationException;
+import com.healthconsult.util.SessionKeys;
+import com.healthconsult.util.Validator;
+import com.healthconsult.dao.UserDaoImpl;
+import com.healthconsult.service.AuthService;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
