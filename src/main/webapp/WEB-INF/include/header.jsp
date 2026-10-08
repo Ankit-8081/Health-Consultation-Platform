@@ -9,6 +9,7 @@
     <title><c:out value="${param.pageTitle}" /> - HealthConsult</title>
     <link rel="stylesheet" href="${ctx}/css/tokens.css">
     <link rel="stylesheet" href="${ctx}/css/style.css">
+    <link rel="stylesheet" href="${ctx}/css/pages.css">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
