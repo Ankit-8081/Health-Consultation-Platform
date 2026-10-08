@@ -15,7 +15,7 @@
     <filter-name>RoleFilter</filter-name>
     <filter-class>com.healthconsult.filter.RoleFilter</filter-class>
   </filter>
- <!-- <filter-mapping>
+  <filter-mapping>
     <filter-name>AuthFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
@@ -23,7 +23,6 @@
     <filter-name>RoleFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
--->
 
   <session-config>
     <session-timeout>30</session-timeout>
