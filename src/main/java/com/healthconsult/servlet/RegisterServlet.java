@@ -1,11 +1,5 @@
 package com.healthconsult.servlet;
 
-import com.healthconsult.dao.UserDaoImpl;
-import com.healthconsult.exception.AppException;
-import com.healthconsult.exception.ValidationException;
-import com.healthconsult.service.AuthService;
-import com.healthconsult.util.SessionKeys;
-import com.healthconsult.util.Validator;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,22 +8,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Level;
-import java.util.logging.Logger;
-
-@WebServlet("/register")
-public class RegisterServlet extends HttpServlet {
-
-/**
- * F1 patient registration. Fields: name, email, phone (optional), password, confirmPassword.
- * Only patients can register themselves. On success: flash message, redirect to /login (PRG).
- * On a problem it forwards back to the form with "errors" and "form" (never the passwords).
- */
-@WebServlet("/register")
+import java.util.logging.Logger;@WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 
     private static final Logger LOG = Logger.getLogger(RegisterServlet.class.getName());
     private static final String VIEW = "/WEB-INF/views/auth/register.jsp";
-
     private final AuthService authService;
 
     public RegisterServlet() {
@@ -63,14 +46,13 @@ public class RegisterServlet extends HttpServlet {
             showForm(req, resp, Map.of("general", "Something went wrong. Please try again."), name, email, phone);
         }
     }
-
-    private void showForm(HttpServletRequest req, HttpServletResponse resp, Map<String, String> errors,
+private void showForm(HttpServletRequest req, HttpServletResponse resp, Map<String, String> errors,
                           String name, String email, String phone) throws ServletException, IOException {
         req.setAttribute("errors", errors);
         req.setAttribute("form", Map.of(
-                "name", Validator.trim(name),
-                "email", Validator.trim(email),
-                "phone", Validator.trim(phone)));
+            "name", Validator.trim(name),
+            "email", Validator.trim(email),
+            "phone", Validator.trim(phone)));
         req.getRequestDispatcher(VIEW).forward(req, resp);
     }
 }
