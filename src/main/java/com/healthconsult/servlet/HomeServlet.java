@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Context root. Logged-in users go to their role's dashboard, everyone else to /login.
+ * Context root. Logged-in users go to their role's dashboard, visitors see the landing page.
  * The empty pattern maps only the root, so Tomcat's default servlet still serves css and images.
  */
 @WebServlet(urlPatterns = {""})
@@ -19,12 +19,15 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String target = "/login";
         HttpSession session = req.getSession(false);
         if (session != null) {
             String roleName = (String) session.getAttribute(SessionKeys.ROLE);
-            target = Role.fromName(roleName).map(Role::getDashboardPath).orElse("/login");
+            var role = Role.fromName(roleName);
+            if (role.isPresent()) {
+                resp.sendRedirect(req.getContextPath() + role.get().getDashboardPath());
+                return;
+            }
         }
-        resp.sendRedirect(req.getContextPath() + target);
+        req.getRequestDispatcher("/WEB-INF/views/common/landing.jsp").forward(req, resp);
     }
 }
