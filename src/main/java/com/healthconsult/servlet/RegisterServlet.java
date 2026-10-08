@@ -8,7 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Level;
-import java.util.logging.Logger;@WebServlet("/register")
+import java.util.logging.Logger;
+
+@WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 
     private static final Logger LOG = Logger.getLogger(RegisterServlet.class.getName());
@@ -23,7 +25,6 @@ public class RegisterServlet extends HttpServlet {
         this.authService = authService;
     }
 
->>>>>>> 3cb80af63303bb4ed02e6c21b3df0931c81c2d25
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher(VIEW).forward(req, resp);
@@ -46,7 +47,8 @@ public class RegisterServlet extends HttpServlet {
             showForm(req, resp, Map.of("general", "Something went wrong. Please try again."), name, email, phone);
         }
     }
-private void showForm(HttpServletRequest req, HttpServletResponse resp, Map<String, String> errors,
+
+    private void showForm(HttpServletRequest req, HttpServletResponse resp, Map<String, String> errors,
                           String name, String email, String phone) throws ServletException, IOException {
         req.setAttribute("errors", errors);
         req.setAttribute("form", Map.of(
