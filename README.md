@@ -293,7 +293,7 @@ Contributions are welcome. Fork the repository and open a pull request. Run `mvn
 
 ## 📄 License
 
-This project is licensed under the **MIT License**.  
+Licensed under the [MIT License](./LICENSE)..  
 You are free to use, modify, and distribute this software with proper attribution.
 
 ---
