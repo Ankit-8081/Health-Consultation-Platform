@@ -1,26 +1,41 @@
-/* Design tokens from docs/UI_Handoff_Spec.md. Use these variables, not raw values. */
+/* Design tokens. Theme taken from the landing page. Use these variables, not raw values. */
 :root {
-  --color-primary: #1F6FB2;
-  --color-primary-dark: #164F80;
-  --color-success: #2E7D32;
+  --color-primary: #007670;
+  --color-primary-dark: #004d47;
+  --color-primary-soft: #E6F4F1;
+  --color-accent: #22c55e;
+  --color-accent-dark: #16a34a;
+  --color-on-accent: #042f2e;
+  --color-hero-from: #004d47;
+  --color-hero-to: #002d2a;
+  --color-hero-text: #cbd5e1;
+  --color-hero-tag: #a7f3d0;
+  --color-hero-highlight: #4ade80;
+  --color-success: #16a34a;
   --color-warning: #B26A00;
-  --color-danger: #C62828;
-  --color-bg: #F5F7FA;
+  --color-danger: #DC3545;
+  --color-bg: #F8FAFC;
   --color-surface: #FFFFFF;
-  --color-text: #1B1F24;
-  --color-muted: #5B6573;
-  --color-border: #D5DBE3;
+  --color-text: #0F172A;
+  --color-nav: #334155;
+  --color-muted: #64748B;
+  --color-border: #E2E8F0;
 
-  --font-body: system-ui, "Segoe UI", Arial, sans-serif;
+  --font-body: "Plus Jakarta Sans", "Segoe UI", Tahoma, sans-serif;
 
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
   --spacing-lg: 24px;
 
-  --radius: 6px;
-  --sidebar-w: 220px;
-  --layout-max: 1100px;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.06);
+  --shadow-nav: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --shadow-side: 2px 0 10px rgba(0, 0, 0, 0.03);
+  --sidebar-w: 240px;
+  --layout-max: 1200px;
 }
 
 html { font-size: 16px; line-height: 1.5; }

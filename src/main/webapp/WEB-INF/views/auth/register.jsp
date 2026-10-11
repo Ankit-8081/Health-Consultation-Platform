@@ -6,7 +6,9 @@
 </jsp:include>
 
 <main id="main-content" class="auth-container">
+    <div class="auth-icon" aria-hidden="true"><i class="fa-solid fa-user-plus"></i></div>
     <h1>Create patient account</h1>
+    <p class="auth-subtitle">Register to book consultations with healthcare professionals.</p>
 
     <jsp:include page="/WEB-INF/include/flash.jsp" />
 

@@ -8,12 +8,18 @@
 <jsp:include page="/WEB-INF/include/sidebar.jsp" />
 
 <main id="main-content" class="content">
-    <h1><c:out value="${featureName}" /></h1>
+    <section class="page-banner">
+        <div>
+            <h1><c:out value="${featureName}" /></h1>
+            <p>This part of the platform is planned for the next phase.</p>
+        </div>
+    </section>
 
-    <div class="card" role="status">
+    <section class="card message-card" role="status">
+        <div class="auth-icon" aria-hidden="true"><i class="fa-solid fa-hourglass-half"></i></div>
         <p><strong>It is scheduled for Review 2.</strong></p>
-        <p>This feature is planned and will be added in the next phase of the project.</p>
-    </div>
+        <p>We are still building this feature. Please check back after the next release.</p>
+    </section>
 </main>
 
 <jsp:include page="/WEB-INF/include/footer.jsp" />

@@ -8,12 +8,17 @@
 <jsp:include page="/WEB-INF/include/sidebar.jsp" />
 
 <main id="main-content" class="content">
-    <h1>My working hours</h1>
+    <section class="page-banner">
+        <div>
+            <h1>My working hours</h1>
+            <p>Set the weekly hours patients can book you in. Hours on the same day cannot overlap.</p>
+        </div>
+    </section>
 
     <jsp:include page="/WEB-INF/include/flash.jsp" />
 
     <section class="card section-gap" aria-labelledby="add-hours-title">
-        <h2 id="add-hours-title">Add working hours</h2>
+        <h2 id="add-hours-title" class="card-title"><i class="fa-solid fa-clock" aria-hidden="true"></i> Add working hours</h2>
         <form action="${pageContext.request.contextPath}/pro/schedule" method="post" class="form-row">
             <div class="form-group">
                 <label for="day">Day</label>
@@ -58,7 +63,7 @@
     </section>
 
     <section class="card" aria-labelledby="hours-title">
-        <h2 id="hours-title">Your weekly hours</h2>
+        <h2 id="hours-title" class="card-title"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Your weekly hours</h2>
         <c:choose>
             <c:when test="${empty hours}">
                 <p class="empty-state">You have not set any working hours yet. Add your first block above.</p>

@@ -4,14 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Page not found</title>
+  <title>Page not found - HealthConsult</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tokens.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
-<body style="font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); text-align: center; padding: 4rem 1rem;">
-  <main>
-    <h1 style="font-size: 24px;">404 - Page not found</h1>
-    <p style="color: var(--color-muted);">We could not find the page you asked for.</p>
-    <p><a href="${pageContext.request.contextPath}/" style="color: var(--color-primary);">Back to home</a></p>
+<body class="error-page">
+  <main class="card error-card">
+    <h1>404 - Page not found</h1>
+    <p>The page you are looking for does not exist.</p>
+    <a class="btn-outline-link" href="${pageContext.request.contextPath}/">Back to home</a>
   </main>
 </body>
 </html>
