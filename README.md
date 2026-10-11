@@ -221,7 +221,7 @@ Password for all: `Password@123`
 ![Patient Dashboard](docs/screenshots/patient-dashboard.png)
 
 ### 📅 Book Consultation
-![Booking](docs/screenshots/book.png)
+![Booking](docs/screenshots/bookconsultation.png)
 
 ### 📋 My Appointments
 ![Appointments](docs/screenshots/appointments.png)
