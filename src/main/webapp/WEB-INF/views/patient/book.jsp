@@ -8,12 +8,17 @@
 <jsp:include page="/WEB-INF/include/sidebar.jsp" />
 
 <main id="main-content" class="content">
-    <h1>Book a consultation</h1>
+    <section class="page-banner">
+        <div>
+            <h1>Book a consultation</h1>
+            <p>Choose a healthcare professional, pick a free slot and tell us why you are visiting.</p>
+        </div>
+    </section>
 
     <jsp:include page="/WEB-INF/include/flash.jsp" />
 
     <section class="card section-gap" aria-labelledby="choose-title">
-        <h2 id="choose-title">1. Choose a healthcare professional</h2>
+        <h2 id="choose-title" class="card-title"><span class="step-number">1</span> Choose a healthcare professional</h2>
         <form action="${pageContext.request.contextPath}/patient/book" method="get" class="form-row">
             <div class="form-group">
                 <label for="professionalId">Professional</label>
@@ -37,7 +42,7 @@
 
     <c:if test="${not empty selectedProfessionalId}">
         <section class="card" aria-labelledby="slots-title">
-            <h2 id="slots-title">2. Pick a slot (next <c:out value="${daysShown}" /> days)</h2>
+            <h2 id="slots-title" class="card-title"><span class="step-number">2</span> Pick a slot (next <c:out value="${daysShown}" /> days)</h2>
             <c:choose>
                 <c:when test="${empty slots}">
                     <p class="empty-state">No free slots in the next <c:out value="${daysShown}" /> days. Try another professional.</p>

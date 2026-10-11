@@ -6,7 +6,9 @@
 </jsp:include>
 
 <main id="main-content" class="auth-container">
+    <div class="auth-icon" aria-hidden="true"><i class="fa-solid fa-right-to-bracket"></i></div>
     <h1>Login to your account</h1>
+    <p class="auth-subtitle">Sign in to book and manage your consultations.</p>
 
     <jsp:include page="/WEB-INF/include/flash.jsp" />
 
